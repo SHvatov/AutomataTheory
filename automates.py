@@ -30,13 +30,15 @@ class Automate:
         self.initial_state = initial_state
         self.alphabet = set(in_alphabet)
 
-        temp_states = [State(name, name == initial_state) for name in set(states)]
+        temp_states = [State(name, name == initial_state)
+                       for name in set(states)]
         for state in temp_states:
             for value in self.alphabet:
                 next_state = transition_func(state.name, value)
 
                 if next_state not in set(states):
-                    raise ValueError(f"Next state [{next_state}] was not mentioned in the state list!")
+                    raise ValueError(
+                        f"Next state [{next_state}] was not mentioned in the state list!")
 
                 if next_state is not None:
                     output = out_func(state.name, value)

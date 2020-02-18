@@ -1,7 +1,6 @@
 def equivalent(left, right):
     if left.get_alphabet() != right.get_alphabet():
         raise ValueError("Input alphabets must be equal!")
-    
 
     transitions = []
     previous_states = []
