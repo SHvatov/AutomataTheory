@@ -21,7 +21,7 @@ def equivalent(left, right):
                 transitions.append((next_l[1], next_r[1]))
                 states.append((left[next_l[0]], right[next_r[0]]))
 
-    for (l, r) in transitions:
-        if l != r:
+    for (left, right) in transitions:
+        if left != right:
             return False
     return True
