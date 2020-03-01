@@ -1,5 +1,6 @@
-from automates import Automate
-from automaton_equivalence import equivalent
+from equivalence import equivalent
+
+from equivalence.automaton import Automaton
 
 
 def lambda_func(s, a):
@@ -27,6 +28,6 @@ def sigma_func(s, a):
 if __name__ == "__main__":
     A = {"a", "b"}
     S = {"1", "2"}
-    a = Automate(A, S, lambda_func, sigma_func, "1")
-    b = Automate(A, S, lambda_func, sigma_func, "2")
+    a = Automaton(A, S, lambda_func, sigma_func, "1")
+    b = Automaton(A, S, lambda_func, sigma_func, "2")
     print(equivalent(a, b))

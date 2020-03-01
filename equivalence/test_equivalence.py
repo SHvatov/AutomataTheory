@@ -1,5 +1,5 @@
-from automates import Automate
-from automaton_equivalence import equivalent
+from equivalence import equivalent
+from equivalence.automaton import Automaton
 
 
 def test_lambda_function_1_first(state, value):
@@ -59,16 +59,16 @@ def test_equivalent_automates():
     a_second = {'p', 'q', 'r'}
     alphabet = {'a', 'b'}
 
-    first = Automate(in_alphabet=alphabet,
-                     states=a_first,
-                     transition_func=test_sigma_function_1_first,
-                     out_func=test_lambda_function_1_first,
-                     initial_state='1')
-    second = Automate(in_alphabet=alphabet,
-                      states=a_second,
-                      transition_func=test_sigma_function_1_second,
-                      out_func=test_lambda_function_1_second,
-                      initial_state='p')
+    first = Automaton(in_alphabet=alphabet,
+                      states=a_first,
+                      transition_func=test_sigma_function_1_first,
+                      out_func=test_lambda_function_1_first,
+                      initial_state='1')
+    second = Automaton(in_alphabet=alphabet,
+                       states=a_second,
+                       transition_func=test_sigma_function_1_second,
+                       out_func=test_lambda_function_1_second,
+                       initial_state='p')
 
     assert equivalent(first, second) is True
 
@@ -146,16 +146,16 @@ def test_not_equivalent_automates():
     a_second = {'p', 'q', 'r', 's'}
     alphabet = {'a', 'b'}
 
-    first = Automate(in_alphabet=alphabet,
-                     states=a_first,
-                     transition_func=test_sigma_function_2_first,
-                     out_func=test_lambda_function_2_first,
-                     initial_state='p')
-    second = Automate(in_alphabet=alphabet,
-                      states=a_second,
-                      transition_func=test_sigma_function_2_second,
-                      out_func=test_lambda_function_2_second,
+    first = Automaton(in_alphabet=alphabet,
+                      states=a_first,
+                      transition_func=test_sigma_function_2_first,
+                      out_func=test_lambda_function_2_first,
                       initial_state='p')
+    second = Automaton(in_alphabet=alphabet,
+                       states=a_second,
+                       transition_func=test_sigma_function_2_second,
+                       out_func=test_lambda_function_2_second,
+                       initial_state='p')
 
     assert equivalent(first, second) is not True
 

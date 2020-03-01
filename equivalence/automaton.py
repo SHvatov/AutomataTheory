@@ -7,7 +7,7 @@ class State:
     def add_transition(self, value, dst, output):
         self.transitions[value] = (dst, output)
 
-    def get_next(self, value):
+    def next_state(self, value):
         if value in self.transitions.keys():
             return self.transitions[value]
         return None
@@ -24,10 +24,9 @@ class State:
             and self.initial == other.intial
 
 
-class Automate:
+class Automaton:
     def __init__(self, in_alphabet, states, out_func, transition_func, initial_state):
         self.states = []
-        self.initial_state = initial_state
         self.alphabet = set(in_alphabet)
 
         temp_states = [State(name, name == initial_state)
@@ -56,11 +55,5 @@ class Automate:
             output += str(state)
         return output
 
-    def get_initial_state(self):
+    def initial_state(self):
         return next(filter(lambda s: s.initial, self.states))
-
-    def get_states(self):
-        return self.states[:]
-
-    def get_alphabet(self):
-        return self.alphabet
